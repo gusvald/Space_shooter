@@ -1,6 +1,12 @@
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include "Play_game.h"
+
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    srand(time(nullptr));
+    Play_game game;
+    game.playing();
     return 0;
 }

@@ -11,6 +11,7 @@ Drawing_Game::Drawing_Game() {
     shipTex.loadFromFile("../Textures/spaceship.png");
     enemyTex.loadFromFile("../Textures/asteroid.png");
     enemy1Tex.loadFromFile("../Textures/asteroid2.png");
+    enemy2Tex.loadFromFile("../Textures/asteroid3.png");
     laserTex.loadFromFile("../Textures/laser1.png");
     laserTex1.loadFromFile("../Textures/laser2.png");
     specialTex.loadFromFile("../Textures/levelup.png");

@@ -21,6 +21,7 @@ public:
     sf::Texture laserTex;
     sf::Texture laserTex1;
     sf::Texture specialTex;
+    sf::Texture enemy2Tex;
     sf::Font font;
     sf::Text LifeInfo;
     sf::Text ScoreInfo;

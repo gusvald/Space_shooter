@@ -30,7 +30,46 @@ void Play_game::playing() {
         while (win.pollEvent(event)) {
             if (event.type == sf::Event::Closed)
                 win.close();
+
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
+            {
+                if (timer >= 35) {
+
+                    if (laser_level == 0) {
+                        player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x);
+                    } else if (laser_level == 1) {
+                        player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x + 12);
+                        player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x - 12);
+
+                    } else if (laser_level == 2) {
+                        player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x);
+                        player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x - 20);
+                        player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x + 20);
+
+                    } else if (laser_level == 3) {
+                        player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x);
+                    }
+
+                    else if (laser_level == 4) {
+                        player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x - 30);
+                        player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x + 35);
+                    }
+
+                    else if (laser_level >= 5) {
+                        player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x - 40);
+                        player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x + 45);
+                        player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x);
+                    }
+
+                    timer = 0;
+
+                }
+
+            }
+
         }
+
+
 
         if (!player.isGameOver()) {
             if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -41,29 +80,6 @@ void Play_game::playing() {
 
             space.ScoreInfo.setString("Score " + std::to_string(player.get_Score()));
             space.LifeInfo.setString("Life " + std::to_string(player.get_HP()) + "  max" + "20");
-
-            if (timer < 35) { timer++; }
-
-            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space) && timer >= 25) {
-
-                if (laser_level == 0) {
-                    player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x);
-                } else if (laser_level == 1) {
-                    player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x);
-                    player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x - 20);
-
-                } else if (laser_level == 2) {
-                    player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x);
-                    player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x - 20);
-                    player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x + 20);
-
-                } else if (laser_level >= 3) {
-                    player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x);
-                }
-
-                timer = 0;
-
-            }
 
             for (unsigned int i = 0; i < player.lasers.size(); i++) {
                 if (player.lasers[i].shape.getPosition().y < 0) {
@@ -101,14 +117,16 @@ void Play_game::playing() {
                                          player.shape.getPosition().y);
             }
 
+            if (timer < 35) { timer++; }
 
             if (timer1 < 30)
                 timer1++;
 
             if (timer1 >= 30) {
-                int random_tex = rand() % 2;
-                if (random_tex == 0) { space.objects.emplace_back(&space.enemyTex, win.getSize(), false); }
-                if (random_tex == 1) { space.objects.emplace_back(&space.enemy1Tex, win.getSize(), false); }
+                int random_tex = rand() % 3;
+                if (random_tex == 0) { space.objects.emplace_back(&space.enemyTex, win.getSize(), false);}
+                if (random_tex == 1) { space.objects.emplace_back(&space.enemy1Tex, win.getSize(), false);}
+                if (random_tex == 2) { space.objects.emplace_back(&space.enemy2Tex, win.getSize(), false);}
                 timer1 = 0;
             }
 
@@ -120,7 +138,11 @@ void Play_game::playing() {
 
             for (unsigned int i = 0; i < space.objects.size(); i++) {
 
+                if(space.objects[i].special)
+                {space.objects[i].shape.move(0.f, 5.f);}
+                else
                 space.objects[i].shape.move(0.f, 3.f);
+
 
                 if (space.objects[i].shape.getPosition().y >=
                     win.getSize().y - space.objects[i].shape.getGlobalBounds().height) {

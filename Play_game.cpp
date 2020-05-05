@@ -57,7 +57,7 @@ void Play_game::playing() {
                     player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x - 20);
                     player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x + 20);
 
-                } else if (laser_level <= 3) {
+                } else if (laser_level >= 3) {
                     player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x);
                 }
 
@@ -75,7 +75,7 @@ void Play_game::playing() {
 
                 for (unsigned int g = 0; g < space.objects.size(); g++) {
                     if (player.lasers[i].shape.getGlobalBounds().intersects(space.objects[g].shape.getGlobalBounds())) {
-                        if (laser_level <= 3) { space.objects[i].HP = 0; }
+                        if (laser_level >= 3) { space.objects[i].HP = 0; }
                         else space.objects[i].HP--;
                         if (space.objects[i].HP <= 0) {
                                 space.objects.erase(space.objects.begin() + g);

@@ -4,7 +4,7 @@
 
 #include <iostream>
 #include "Play_game.h"
-
+#include "Menu_Board.h"
 
 Play_game::Play_game() {
 }
@@ -17,6 +17,7 @@ void Play_game::playing() {
     win.setVerticalSyncEnabled(true);
 
     spaceship player(&space.shipTex);
+    Menu_Board menu;
     sf::Clock clk;
 
     int timer = 35;
@@ -28,8 +29,14 @@ void Play_game::playing() {
         sf::Event event{};
 
         while (win.pollEvent(event)) {
-            if (event.type == sf::Event::Closed)
-                win.close();
+            if(event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed((sf::Keyboard::Escape)))) {
+                if (player.isGameOver()) {
+                    menu.DrawMenu();
+                    win.close();
+                } else{
+                    win.close();
+                }
+            }
 
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
             {

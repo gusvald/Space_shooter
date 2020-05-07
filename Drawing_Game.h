@@ -22,10 +22,15 @@ public:
     sf::Texture laserTex1;
     sf::Texture specialTex;
     sf::Texture enemy2Tex;
+    sf::Texture Game_logo;
     sf::Font font;
     sf::Text LifeInfo;
     sf::Text ScoreInfo;
     sf::Text GameOver;
+    sf::Text Menu[3];
+
+
+
 
     std::vector<enemy> objects;
 };

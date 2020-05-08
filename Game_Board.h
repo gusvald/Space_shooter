@@ -14,9 +14,7 @@
 class Game_Board {
     textures_in space;
 public:
-    sf::Clock clk;
-    int timer = 35;
-    int timer1 = -150;
+    sf::Clock clk, clk1, clk2, clk3;
     int laser_level = 0;
 
     Game_Board();
@@ -27,7 +25,9 @@ public:
 
     void DrawingGame(sf::RenderWindow &win, spaceship &player);
 
-    void RestartGame(int &laser_level, int &timer, int &timer1, spaceship &player);
+    void RestartGame(spaceship &player);
+
+    std::vector<sf::Sprite> explosions;
 
 };
 

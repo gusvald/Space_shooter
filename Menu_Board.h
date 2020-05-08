@@ -17,6 +17,7 @@ class Menu_Board {
 public:
 
     sf::Sprite shape;
+    sf::Sprite logo;
 
     Menu_Board();
 

@@ -12,7 +12,7 @@ Game_Board::Game_Board() {
 void Game_Board::Events(spaceship &player, const sf::Event &event) {
 
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
-        if (timer >= 35) {
+        if (clk1.getElapsedTime().asMilliseconds() > 20) {
 
             if (laser_level == 0) {
                 player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x);
@@ -36,7 +36,7 @@ void Game_Board::Events(spaceship &player, const sf::Event &event) {
                 player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x);
             }
 
-            timer = 0;
+            clk1.restart();
 
         }
     }
@@ -44,10 +44,10 @@ void Game_Board::Events(spaceship &player, const sf::Event &event) {
 
 void Game_Board::Logic(sf::RenderWindow &win, spaceship &player) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-        player.shape.move(-7.f, 0.f);
+        player.shape.move(-10.f, 0.f);
 
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-        player.shape.move(7.f, 0.f);
+        player.shape.move(10.f, 0.f);
 
     space.ScoreInfo.setString("Score " + std::to_string(player.get_Score()));
     space.LifeInfo.setString("Life " + std::to_string(player.get_HP()) + "  max" + "20");
@@ -58,12 +58,21 @@ void Game_Board::Logic(sf::RenderWindow &win, spaceship &player) {
             break;
         }
 
-        player.lasers[i].shape.move(0.f, -5.f);
+        player.lasers[i].shape.move(0.f, -15.f);
 
         for (unsigned int g = 0; g < space.objects.size(); g++) {
             if (player.lasers[i].shape.getGlobalBounds().intersects(space.objects[g].shape.getGlobalBounds())) {
+                sf::Sprite explode;
+                explode.setTexture(space.ExplosionTex);
+                explode.setPosition(player.lasers[i].shape.getPosition());
+                explode.setScale(0.2f, 0.2f);
+                explosions.push_back(explode);
+
                 if (laser_level >= 3) { space.objects[i].HP = 0; }
-                else space.objects[i].HP--;
+                else {
+                    space.objects[i].HP--;
+                }
+
                 if (space.objects[i].HP <= 0) {
                     space.objects.erase(space.objects.begin() + g);
                     player.add_score();
@@ -87,17 +96,13 @@ void Game_Board::Logic(sf::RenderWindow &win, spaceship &player) {
                                  player.shape.getPosition().y);
     }
 
-    if (timer < 35) { timer++; }
 
-    if (timer1 < 30)
-        timer1++;
-
-    if (timer1 >= 30) {
+    if (clk2.getElapsedTime().asMilliseconds() > 130) {
         int random_tex = rand() % 3;
         if (random_tex == 0) { space.objects.emplace_back(&space.enemyTex, win.getSize(), false); }
         if (random_tex == 1) { space.objects.emplace_back(&space.enemy1Tex, win.getSize(), false); }
         if (random_tex == 2) { space.objects.emplace_back(&space.enemy2Tex, win.getSize(), false); }
-        timer1 = 0;
+        clk2.restart();
     }
 
     if (clk.getElapsedTime().asSeconds() > 10) {
@@ -107,9 +112,9 @@ void Game_Board::Logic(sf::RenderWindow &win, spaceship &player) {
 
     for (unsigned int i = 0; i < space.objects.size(); i++) {
 
-        if (space.objects[i].special) { space.objects[i].shape.move(0.f, 5.f); }
+        if (space.objects[i].special) { space.objects[i].shape.move(0.f, 12.f); }
         else
-            space.objects[i].shape.move(0.f, 3.f);
+            space.objects[i].shape.move(0.f, 9.f);
 
 
         if (space.objects[i].shape.getPosition().y >=
@@ -132,8 +137,13 @@ void Game_Board::Logic(sf::RenderWindow &win, spaceship &player) {
 
 void Game_Board::DrawingGame(sf::RenderWindow &win, spaceship &player) {
     win.draw(player.shape);
+
     for (unsigned int i = 0; i < player.lasers.size(); i++) {
         win.draw(player.lasers[i].shape);
+    }
+
+    for (unsigned int i = 0; i < explosions.size(); i++) {
+        win.draw(explosions[i]);
     }
 
     for (unsigned int i = 0; i < space.objects.size(); i++) {
@@ -145,18 +155,19 @@ void Game_Board::DrawingGame(sf::RenderWindow &win, spaceship &player) {
 
     if (player.isGameOver()) {
         win.draw(space.GameOver);
+        win.draw(space.RestartInfo);
     }
 }
 
-void Game_Board::RestartGame(int &laser_level, int &timer, int &timer1, spaceship &player) {
+void Game_Board::RestartGame(spaceship &player) {
     laser_level = 0;
-    timer = 35;
-    timer1 = -150;
     space.objects.clear();
     player.resetHP();
     player.resetGameOver();
     player.resetSCORE();
     player.resetLasers();
+    clk1.restart();
+    clk2.restart();
 }
 
 

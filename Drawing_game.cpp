@@ -10,7 +10,8 @@ Drawing_game::Drawing_game() {
 }
 
 void Drawing_game::drawing() {
-    sf::RenderWindow win(sf::VideoMode(space.get_width(), space.get_height()), "Jupiter");
+    sf::RenderWindow win(sf::VideoMode(space.get_width(), space.get_height()), "Jupiter",
+                         sf::Style::Titlebar | sf::Style::Close);
     win.setActive(true);
     win.setKeyRepeatEnabled(false);
     win.setVerticalSyncEnabled(true);
@@ -34,12 +35,13 @@ void Drawing_game::drawing() {
             }
 
             if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::R) {
-                play.RestartGame(play.laser_level, play.timer, play.timer1, player);
+                play.RestartGame(player);
                 Done = false;
             }
 
             if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::M) {
                 menu.setPage3();
+                if (player.isGameOver()) { play.RestartGame(player); }
             }
 
             if (page == 0) {
@@ -53,6 +55,11 @@ void Drawing_game::drawing() {
 
         if (!player.isGameOver() && page == 0) {
             play.Logic(win, player);
+            if (play.clk3.getElapsedTime().asMilliseconds() > 120) {
+                play.explosions.clear();
+                play.clk3.restart();
+            }
+
         } else if (player.isGameOver() && !Done) {
             player.Safe_Score();
             Done = true;

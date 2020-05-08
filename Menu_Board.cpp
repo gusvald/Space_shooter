@@ -6,8 +6,12 @@
 
 Menu_Board::Menu_Board() {
     this->shape.setTexture(space.Game_logo);
-    this->shape.setPosition(550, 130);
+    this->shape.setPosition(600, 200);
     this->shape.setScale(0.7f, 0.7f);
+
+    this->logo.setTexture(space.Game_sigTex);
+    this->logo.setPosition(40, 60);
+    this->logo.setScale(0.5f, 0.5f);
     Selected = 0;
 }
 
@@ -63,6 +67,7 @@ void Menu_Board::Events(const sf::Event &event) {
 void Menu_Board::DrawingMenu(sf::RenderWindow &win) {
     for (const auto &i : space.Menu) { win.draw(i); }
     win.draw(shape);
+    win.draw(logo);
 }
 
 int Menu_Board::getPage() {

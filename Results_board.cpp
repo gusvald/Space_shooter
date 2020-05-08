@@ -9,8 +9,10 @@ Results_board::Results_board() {
 }
 
 void Results_board::DrawResults(sf::RenderWindow &win) {
-    for (int i = 0; i < 10; i++)
+    for (int i = 0; i < 10; i++) {
         win.draw(Results[i]);
+    }
+    win.draw(space.BackMenuInfo);
 }
 
 void Results_board::LoadResults() {

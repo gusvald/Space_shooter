@@ -19,6 +19,8 @@ public:
 
     textures_in();
 
+    sf::Font font;
+
     sf::Texture shipTex;
     sf::Texture enemyTex;
     sf::Texture enemy1Tex;
@@ -27,10 +29,14 @@ public:
     sf::Texture specialTex;
     sf::Texture enemy2Tex;
     sf::Texture Game_logo;
-    sf::Font font;
+    sf::Texture Game_sigTex;
+    sf::Texture ExplosionTex;
+
     sf::Text LifeInfo;
     sf::Text ScoreInfo;
     sf::Text GameOver;
+    sf::Text RestartInfo;
+    sf::Text BackMenuInfo;
     sf::Text Menu[3];
 
 

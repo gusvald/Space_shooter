@@ -4,15 +4,14 @@
 
 #ifndef SPACESHOOTER_LASER_H
 #define SPACESHOOTER_LASER_H
+
 #include<SFML/Graphics.hpp>
-
-
-
 
 
 class laser {
 public:
     laser(sf::Texture *texture, float pos);
+
     sf::Sprite shape;
 };
 

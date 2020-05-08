@@ -1,15 +1,13 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "Play_game.h"
-#include "Menu_Board.h"
+#include "Drawing_game.h"
 
 
 int main() {
     srand(time(nullptr));
-    Menu_Board menu;
-    menu.DrawMenu();
-
+    Drawing_game game;
+    game.drawing();
     return 0;
 }
 

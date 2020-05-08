@@ -2,19 +2,23 @@
 // Created by Gus on 05.05.2020.
 //
 
-#ifndef SPACESHOOTER_DRAWING_GAME_H
-#define SPACESHOOTER_DRAWING_GAME_H
+#ifndef SPACESHOOTER_TEXTURES_IN_H
+#define SPACESHOOTER_TEXTURES_IN_H
+
 #include <SFML/Graphics.hpp>
 #include "enemy.h"
 
 
-class Drawing_Game {
+class textures_in {
     int width = 1024;
     int height = 768;
 public:
     int get_width() const;
+
     int get_height() const;
-    Drawing_Game();
+
+    textures_in();
+
     sf::Texture shipTex;
     sf::Texture enemyTex;
     sf::Texture enemy1Tex;
@@ -30,10 +34,8 @@ public:
     sf::Text Menu[3];
 
 
-
-
     std::vector<enemy> objects;
 };
 
 
-#endif //SPACESHOOTER_DRAWING_GAME_H
+#endif //SPACESHOOTER_TEXTURES_IN_H

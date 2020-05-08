@@ -4,6 +4,7 @@
 
 #ifndef SPACESHOOTER_ENEMY_H
 #define SPACESHOOTER_ENEMY_H
+
 #include <SFML/Graphics.hpp>
 
 class enemy {
@@ -13,6 +14,7 @@ public:
     bool special = false;
     sf::Sprite shape;
     sf::Texture *texture;
+
     enemy(sf::Texture *texture, sf::Vector2<unsigned int> pos, bool special);
 
 

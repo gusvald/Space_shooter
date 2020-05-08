@@ -4,20 +4,37 @@
 
 #ifndef SPACESHOOTER_MENU_BOARD_H
 #define SPACESHOOTER_MENU_BOARD_H
+
 #include "SFML/Graphics.hpp"
-#include "Drawing_Game.h"
+#include "textures_in.h"
+#include "Drawing_game.h"
+#include "Results_board.h"
 
 
 class Menu_Board {
-
     int Selected;
+    int Page = 3;
 public:
+
+    sf::Sprite shape;
+
     Menu_Board();
-    Drawing_Game space;
+
+    textures_in space;
+
     void moveUP();
+
     void moveDOWN();
+
     int GetSelected() const;
-    void DrawMenu();
+
+    void Events(const sf::Event &event);
+
+    void DrawingMenu(sf::RenderWindow &win);
+
+    int getPage();
+
+    void setPage3();
 };
 
 

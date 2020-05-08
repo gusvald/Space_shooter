@@ -3,59 +3,12 @@
 //
 
 #include "Menu_Board.h"
-#include "Play_game.h"
 
 Menu_Board::Menu_Board() {
-
-Selected = 0;
-}
-
-void Menu_Board::DrawMenu() {
-    sf::RenderWindow win(sf::VideoMode(space.get_width(), space.get_height()), "Jupiter");
-    win.setActive(true);
-    win.setKeyRepeatEnabled(false);
-    win.setVerticalSyncEnabled(true);
-
-    Play_game play;
-
-    while (win.isOpen()) {
-        sf::Event event{};
-
-        while (win.pollEvent(event)) {
-            if (event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed((sf::Keyboard::Escape)))) {
-                win.close();
-            }
-
-            if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Up) {
-                moveUP();
-            }
-
-            if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Down) {
-                moveDOWN();
-            }
-
-            if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Return) {
-
-                if (GetSelected() == 0) {
-                    play.playing();
-                    win.close();
-                }
-
-                if (GetSelected() == 1) {
-                    win.close();
-                }
-
-                if (GetSelected() == 2) {
-                    win.close();
-                }
-            }
-        }
-
-
-        win.clear(sf::Color(0, 0, 0));
-        for (const auto &i : space.Menu) { win.draw(i); }
-        win.display();
-    }
+    this->shape.setTexture(space.Game_logo);
+    this->shape.setPosition(550, 130);
+    this->shape.setScale(0.7f, 0.7f);
+    Selected = 0;
 }
 
 void Menu_Board::moveUP() {
@@ -63,7 +16,7 @@ void Menu_Board::moveUP() {
         space.Menu[Selected].setFillColor(sf::Color::White);
         Selected--;
         if (Selected == -1) { Selected = 2; }
-        space.Menu[Selected].setFillColor(sf::Color::Red);
+        space.Menu[Selected].setFillColor(sf::Color::Cyan);
     }
 }
 
@@ -72,12 +25,52 @@ void Menu_Board::moveDOWN() {
         space.Menu[Selected].setFillColor(sf::Color::White);
         Selected++;
         if (Selected == 3) { Selected = 0; }
-        space.Menu[Selected].setFillColor(sf::Color::Red);
+        space.Menu[Selected].setFillColor(sf::Color::Cyan);
     }
 }
 
 int Menu_Board::GetSelected() const {
     return Selected;
+}
+
+void Menu_Board::Events(const sf::Event &event) {
+    Drawing_game game;
+
+    if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Up) {
+        moveUP();
+    }
+
+    if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Down) {
+        moveDOWN();
+    }
+
+    if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Return) {
+
+        if (GetSelected() == 0) {
+            Page = 0;
+        }
+
+        if (GetSelected() == 1) {
+            Page = 1;
+        }
+
+        if (GetSelected() == 2) {
+            Page = 2;
+        }
+    }
+}
+
+void Menu_Board::DrawingMenu(sf::RenderWindow &win) {
+    for (const auto &i : space.Menu) { win.draw(i); }
+    win.draw(shape);
+}
+
+int Menu_Board::getPage() {
+    return Page;
+}
+
+void Menu_Board::setPage3() {
+    Page = 3;
 }
 
 

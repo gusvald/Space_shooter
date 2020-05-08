@@ -28,7 +28,7 @@ void Drawing_game::drawing() {
         page = menu.getPage();
 
         while (win.pollEvent(event)) {
-            if (event.type == sf::Event::Closed || (sf::Keyboard::isKeyPressed((sf::Keyboard::Escape))) || page == 2) {
+            if (event.type == sf::Event::Closed || page == 2) {
                 win.close();
                 continue;
             }

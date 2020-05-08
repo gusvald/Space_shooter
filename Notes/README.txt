@@ -23,3 +23,4 @@ Na początku warto unikać meteorów i dopiero po ulepszeniu lasera zacząć je 
 
 
 
+Testy wykazaly że trzeba zamienić odliczanie czasu na sfclock, u mnie gra działa dużo szybciej niż na innych komputerach.

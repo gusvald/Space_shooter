@@ -14,7 +14,6 @@ public:
     bool special = false;
     sf::Sprite shape;
     sf::Texture *texture;
-
     Enemy(sf::Texture *texture, sf::Vector2<unsigned int> pos, bool special);
 
 

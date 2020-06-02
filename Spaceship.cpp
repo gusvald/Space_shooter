@@ -46,32 +46,6 @@ int Spaceship::get_HP() {
     return this->HP;
 }
 
-void Spaceship::Safe_Score() {
-    ScoreBoard[10] = get_Score();
-
-    file.open("../Notes/Score.txt", std::ios::in);
-    if (file.good()) {
-        for (int i = 0; i < 10; i++) {
-            getline(file, line);
-            ScoreBoard[i] = atoi(line.c_str());
-        }
-    }
-    file.close();
-
-    for (unsigned int i = 0; i < 11; i++) {
-        for (unsigned int g = 1; g < 11 - i; g++) {
-            if (ScoreBoard[g - 1] < ScoreBoard[g])
-                std::swap(ScoreBoard[g - 1], ScoreBoard[g]);
-        }
-    }
-
-    file.open("../Notes/Score.txt", std::ios::out);
-    for (unsigned int i = 0; i < 10; i++) {
-        file << ScoreBoard[i] << std::endl;
-    }
-    file.close();
-}
-
 void Spaceship::resetHP() {
     this->HP = this->HP_max;
 }

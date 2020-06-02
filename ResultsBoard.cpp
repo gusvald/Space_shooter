@@ -16,19 +16,19 @@ void ResultsBoard::DrawResults(sf::RenderWindow &win) {
 }
 
 void ResultsBoard::LoadResults() {
-    Spaceship player(&space.shipTex);
 
-    player.file.open("../Notes/Score.txt", std::ios::in);
-    if (player.file.good()) {
+
+    file.open("../Notes/Score.txt", std::ios::in);
+    if (file.good()) {
 
         std::string line;
 
         for (int i = 0; i < 10; i++) {
-            getline(player.file, line);
+            getline(file, line);
             score_int[i] = atoi(line.c_str());
         }
     }
-    player.file.close();
+    file.close();
 
     for (int i = 0; i < 10; i++) {
         score_string[i] = std::to_string(score_int[i]);
@@ -41,3 +41,31 @@ void ResultsBoard::LoadResults() {
         Results[i].setString(score_string[i]);
     }
 }
+
+void ResultsBoard::saveScore(int score) {
+    ScoreBoard[10] = score;
+
+    file.open("../Notes/Score.txt", std::ios::in);
+    if (file.good()) {
+        for (int i = 0; i < 10; i++) {
+            getline(file, line);
+            ScoreBoard[i] = atoi(line.c_str());
+        }
+    }
+    file.close();
+
+    for (unsigned int i = 0; i < 11; i++) {
+        for (unsigned int g = 1; g < 11 - i; g++) {
+            if (ScoreBoard[g - 1] < ScoreBoard[g])
+                std::swap(ScoreBoard[g - 1], ScoreBoard[g]);
+        }
+    }
+
+    file.open("../Notes/Score.txt", std::ios::out);
+    for (unsigned int i = 0; i < 10; i++) {
+        file << ScoreBoard[i] << std::endl;
+    }
+    file.close();
+}
+
+

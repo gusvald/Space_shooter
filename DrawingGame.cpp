@@ -42,7 +42,10 @@ void DrawingGame::drawing() {
 
             if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::M) {
                 menu.setPage3();
-                if (player.isGameOver()) { play.RestartGame(player); }
+                if (player.isGameOver()) {
+                    play.RestartGame(player);
+                    IsAlreadySaved = false;
+                }
             }
 
             if (page == 0) {
@@ -62,7 +65,7 @@ void DrawingGame::drawing() {
             }
 
         } else if (player.isGameOver() && !IsAlreadySaved) {
-            player.Safe_Score();
+            result.saveScore(player.get_Score());
             IsAlreadySaved = true;
         }
 

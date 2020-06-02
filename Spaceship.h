@@ -6,7 +6,6 @@
 #define TEST_SFML_SPACESHIP_H
 
 #include<SFML/Graphics.hpp>
-#include <fstream>
 #include "vector"
 #include "Laser.h"
 
@@ -16,7 +15,7 @@ class Spaceship {
     int HP;
     bool GameOver;
     int score;
-    int ScoreBoard[11];
+
 public:
     std::vector<Laser> lasers;
     sf::Sprite shape;
@@ -38,8 +37,6 @@ public:
 
     void add_score2();
 
-    void Safe_Score();
-
     void resetHP();
 
     void resetSCORE();
@@ -47,9 +44,6 @@ public:
     void resetGameOver();
 
     void resetLasers();
-
-    std::fstream file;
-    std::string line;
 
 };
 

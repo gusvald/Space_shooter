@@ -6,7 +6,7 @@
 #include "GameBoard.h"
 
 GameBoard::GameBoard() {
-    Spaceship player(&space.shipTex);
+    Spaceship player(&space.textures[0]);
 }
 
 void GameBoard::Events(Spaceship &player, const sf::Event &event) {
@@ -15,25 +15,25 @@ void GameBoard::Events(Spaceship &player, const sf::Event &event) {
         if (clk1.getElapsedTime().asMilliseconds() > 20) {
 
             if (laser_level == 0) {
-                player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x);
+                player.lasers.emplace_back(&space.textures[4], player.shape.getPosition().x);
             } else if (laser_level == 1) {
-                player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x + 12);
-                player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x - 12);
+                player.lasers.emplace_back(&space.textures[4], player.shape.getPosition().x + 12);
+                player.lasers.emplace_back(&space.textures[4], player.shape.getPosition().x - 12);
 
             } else if (laser_level == 2) {
-                player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x);
-                player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x - 20);
-                player.lasers.emplace_back(&space.laserTex, player.shape.getPosition().x + 20);
+                player.lasers.emplace_back(&space.textures[4], player.shape.getPosition().x);
+                player.lasers.emplace_back(&space.textures[4], player.shape.getPosition().x - 20);
+                player.lasers.emplace_back(&space.textures[4], player.shape.getPosition().x + 20);
 
             } else if (laser_level == 3) {
-                player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x);
+                player.lasers.emplace_back(&space.textures[5], player.shape.getPosition().x);
             } else if (laser_level == 4) {
-                player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x - 30);
-                player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x + 35);
+                player.lasers.emplace_back(&space.textures[5], player.shape.getPosition().x - 30);
+                player.lasers.emplace_back(&space.textures[5], player.shape.getPosition().x + 35);
             } else if (laser_level >= 5) {
-                player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x - 40);
-                player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x + 45);
-                player.lasers.emplace_back(&space.laserTex1, player.shape.getPosition().x);
+                player.lasers.emplace_back(&space.textures[5], player.shape.getPosition().x - 40);
+                player.lasers.emplace_back(&space.textures[5], player.shape.getPosition().x + 45);
+                player.lasers.emplace_back(&space.textures[5], player.shape.getPosition().x);
             }
 
             clk1.restart();
@@ -63,7 +63,7 @@ void GameBoard::Logic(sf::RenderWindow &win, Spaceship &player) {
         for (unsigned int g = 0; g < space.objects.size(); g++) {
             if (player.lasers[i].shape.getGlobalBounds().intersects(space.objects[g].shape.getGlobalBounds())) {
                 sf::Sprite explode;
-                explode.setTexture(space.ExplosionTex);
+                explode.setTexture(space.textures[9]);
                 explode.setPosition(player.lasers[i].shape.getPosition());
                 explode.setScale(0.2f, 0.2f);
                 explosions.push_back(explode);
@@ -99,14 +99,14 @@ void GameBoard::Logic(sf::RenderWindow &win, Spaceship &player) {
 
     if (clk2.getElapsedTime().asMilliseconds() > 130) {
         int random_tex = rand() % 3;
-        if (random_tex == 0) { space.objects.emplace_back(&space.enemyTex, win.getSize(), false); }
-        if (random_tex == 1) { space.objects.emplace_back(&space.enemy1Tex, win.getSize(), false); }
-        if (random_tex == 2) { space.objects.emplace_back(&space.enemy2Tex, win.getSize(), false); }
+        if (random_tex == 0) { space.objects.emplace_back(&space.textures[1], win.getSize(), false); }
+        if (random_tex == 1) { space.objects.emplace_back(&space.textures[2], win.getSize(), false); }
+        if (random_tex == 2) { space.objects.emplace_back(&space.textures[3], win.getSize(), false); }
         clk2.restart();
     }
 
     if (clk.getElapsedTime().asSeconds() > 10) {
-        space.objects.emplace_back(&space.specialTex, win.getSize(), true);
+        space.objects.emplace_back(&space.textures[6], win.getSize(), true);
         clk.restart();
     }
 

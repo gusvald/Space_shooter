@@ -9,9 +9,11 @@
 #include "Enemy.h"
 
 
+
 class TexturesIn {
     int width = 1024;
     int height = 768;
+    bool Error = false;
 public:
     int get_width() const;
 
@@ -20,17 +22,7 @@ public:
     TexturesIn();
 
     sf::Font font;
-
-    sf::Texture shipTex;
-    sf::Texture enemyTex;
-    sf::Texture enemy1Tex;
-    sf::Texture laserTex;
-    sf::Texture laserTex1;
-    sf::Texture specialTex;
-    sf::Texture enemy2Tex;
-    sf::Texture Game_logo;
-    sf::Texture Game_sigTex;
-    sf::Texture ExplosionTex;
+    sf::Texture textures[10];
 
     sf::Text LifeInfo;
     sf::Text ScoreInfo;

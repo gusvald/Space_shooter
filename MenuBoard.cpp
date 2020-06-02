@@ -5,11 +5,11 @@
 #include "MenuBoard.h"
 
 MenuBoard::MenuBoard() {
-    this->shape.setTexture(space.Game_logo);
+    this->shape.setTexture(space.textures[7]);
     this->shape.setPosition(600, 200);
     this->shape.setScale(0.7f, 0.7f);
 
-    this->logo.setTexture(space.Game_sigTex);
+    this->logo.setTexture(space.textures[8]);
     this->logo.setPosition(40, 60);
     this->logo.setScale(0.5f, 0.5f);
     Selected = 0;

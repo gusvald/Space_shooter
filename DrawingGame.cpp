@@ -19,7 +19,7 @@ void DrawingGame::drawing() {
     sf::Event event{};
 
 
-    Spaceship player(&space.shipTex);
+    Spaceship player(&space.textures[0]);
     MenuBoard menu;
     GameBoard play;
     ResultsBoard result;

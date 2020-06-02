@@ -9,23 +9,55 @@
 
 TexturesIn::TexturesIn() {
 
-    shipTex.loadFromFile("../Textures/Spaceship.png");
-    enemyTex.loadFromFile("../Textures/asteroid.png");
-    enemy1Tex.loadFromFile("../Textures/asteroid2.png");
-    enemy2Tex.loadFromFile("../Textures/asteroid3.png");
-    laserTex.loadFromFile("../Textures/laser1.png");
-    laserTex1.loadFromFile("../Textures/laser2.png");
-    specialTex.loadFromFile("../Textures/levelup.png");
-    Game_logo.loadFromFile("../Textures/Game_logo.png");
-    Game_sigTex.loadFromFile("../Textures/Jupiter.png");
-    ExplosionTex.loadFromFile("../Textures/Explosion.png");
+    textures[0].loadFromFile("../Textures/Spaceship.png");
+    if (!textures[0].loadFromFile("../Textures/Spaceship.png"))
+        Error = true;
+
+    textures[1].loadFromFile("../Textures/asteroid.png");
+    if (!textures[1].loadFromFile("../Textures/asteroid.png"))
+        Error = true;
+
+    textures[2].loadFromFile("../Textures/asteroid2.png");
+    if (!textures[2].loadFromFile("../Textures/asteroid2.png"))
+        Error = true;
+
+    textures[3].loadFromFile("../Textures/asteroid3.png");
+    if (!textures[3].loadFromFile("../Textures/asteroid3.png"))
+        Error = true;
+
+    textures[4].loadFromFile("../Textures/laser1.png");
+    if (!textures[4].loadFromFile("../Textures/laser1.png"))
+        Error = true;
+
+    textures[5].loadFromFile("../Textures/laser2.png");
+    if (!textures[5].loadFromFile("../Textures/laser2.png"))
+        Error = true;
+
+    textures[6].loadFromFile("../Textures/levelup.png");
+    if (!textures[6].loadFromFile("../Textures/levelup.png"))
+        Error = true;
+
+    textures[7].loadFromFile("../Textures/Game_logo.png");
+    if (!textures[7].loadFromFile("../Textures/Game_logo.png"))
+        Error = true;
+
+    textures[8].loadFromFile("../Textures/Jupiter.png");
+    if (!textures[8].loadFromFile("../Textures/Jupiter.png"))
+        Error = true;
+
+    textures[9].loadFromFile("../Textures/Explosion.png");
+    if (!textures[9].loadFromFile("../Textures/Explosion.png"))
+        Error = true;
 
     font.loadFromFile("../Fonts/8-bit.ttf");
-    if (!font.loadFromFile("../Fonts/8-bit.ttf")) {
+    if (!font.loadFromFile("../Fonts/8-bit.ttf"))
+        Error = true;
+
+
+    if (Error) {
         std::cerr << strerror(errno) << std::endl;
         abort();
     }
-
 
     this->LifeInfo.setFont(font);
     this->LifeInfo.setCharacterSize(30);

@@ -12,6 +12,7 @@
 #include "GameBoard.h"
 #include "ResultsBoard.h"
 
+
 class DrawingGame {
     TexturesIn space;
     bool IsAlreadySaved = false;
@@ -20,6 +21,11 @@ public:
     DrawingGame();
 
     void drawing();
+
+
+    void events(sf::Event &event, sf::RenderWindow &win, Spaceship &player, MenuBoard &menu, GameBoard &play);
+
+    void savinglogic(sf::RenderWindow &win, GameBoard &play, Spaceship &player, ResultsBoard &result);
 
 
 };

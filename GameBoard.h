@@ -27,6 +27,18 @@ public:
 
     void RestartGame(Spaceship &player);
 
+    void movement(Spaceship &player);
+
+    void info(Spaceship &player);
+
+    void lasers(Spaceship &player);
+
+    void playerPos(Spaceship &player, sf::RenderWindow &win);
+
+    void asteroids(sf::Clock &clk, sf::Clock &clk2, sf::RenderWindow &win);
+
+    void colisions(sf::RenderWindow &win, Spaceship &player);
+
     std::vector<sf::Sprite> explosions;
 
 };

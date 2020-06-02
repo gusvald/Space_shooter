@@ -38,7 +38,6 @@ int MenuBoard::GetSelected() const {
 }
 
 void MenuBoard::Events(const sf::Event &event) {
-    DrawingGame game;
 
     if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Up) {
         moveUP();
@@ -50,16 +49,16 @@ void MenuBoard::Events(const sf::Event &event) {
 
     if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Return) {
 
-        if (GetSelected() == 0) {
-            Page = 0;
+        if (GetSelected() == Play) {
+            Page = Play;
         }
 
-        if (GetSelected() == 1) {
-            Page = 1;
+        if (GetSelected() == Result) {
+            Page = Result;
         }
 
-        if (GetSelected() == 2) {
-            Page = 2;
+        if (GetSelected() == Exit) {
+            Page = Exit;
         }
     }
 }
@@ -75,7 +74,7 @@ int MenuBoard::getPage() {
 }
 
 void MenuBoard::setPage3() {
-    Page = 3;
+    Page = Menu;
 }
 
 

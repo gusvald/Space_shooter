@@ -4,12 +4,12 @@
 
 #include <cstring>
 #include <iostream>
-#include "textures_in.h"
+#include "TexturesIn.h"
 
 
-textures_in::textures_in() {
+TexturesIn::TexturesIn() {
 
-    shipTex.loadFromFile("../Textures/spaceship.png");
+    shipTex.loadFromFile("../Textures/Spaceship.png");
     enemyTex.loadFromFile("../Textures/asteroid.png");
     enemy1Tex.loadFromFile("../Textures/asteroid2.png");
     enemy2Tex.loadFromFile("../Textures/asteroid3.png");
@@ -67,10 +67,10 @@ textures_in::textures_in() {
 
 }
 
-int textures_in::get_width() const {
+int TexturesIn::get_width() const {
     return width;
 }
 
-int textures_in::get_height() const {
+int TexturesIn::get_height() const {
     return height;
 }

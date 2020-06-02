@@ -8,9 +8,9 @@
 #include<SFML/Graphics.hpp>
 #include <fstream>
 #include "vector"
-#include "laser.h"
+#include "Laser.h"
 
-class spaceship {
+class Spaceship {
 
     int HP_max;
     int HP;
@@ -18,11 +18,11 @@ class spaceship {
     int score;
     int ScoreBoard[11];
 public:
-    std::vector<laser> lasers;
+    std::vector<Laser> lasers;
     sf::Sprite shape;
     sf::Texture *texture;
 
-    explicit spaceship(sf::Texture *texture);
+    explicit Spaceship(sf::Texture *texture);
 
     void decrease_HP();
 

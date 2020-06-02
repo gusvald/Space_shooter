@@ -2,9 +2,9 @@
 // Created by Gus on 05.05.2020.
 //
 
-#include "Menu_Board.h"
+#include "MenuBoard.h"
 
-Menu_Board::Menu_Board() {
+MenuBoard::MenuBoard() {
     this->shape.setTexture(space.Game_logo);
     this->shape.setPosition(600, 200);
     this->shape.setScale(0.7f, 0.7f);
@@ -15,7 +15,7 @@ Menu_Board::Menu_Board() {
     Selected = 0;
 }
 
-void Menu_Board::moveUP() {
+void MenuBoard::moveUP() {
     if (Selected - 1 >= -1) {
         space.Menu[Selected].setFillColor(sf::Color::White);
         Selected--;
@@ -24,7 +24,7 @@ void Menu_Board::moveUP() {
     }
 }
 
-void Menu_Board::moveDOWN() {
+void MenuBoard::moveDOWN() {
     if (Selected + 1 <= 3) {
         space.Menu[Selected].setFillColor(sf::Color::White);
         Selected++;
@@ -33,12 +33,12 @@ void Menu_Board::moveDOWN() {
     }
 }
 
-int Menu_Board::GetSelected() const {
+int MenuBoard::GetSelected() const {
     return Selected;
 }
 
-void Menu_Board::Events(const sf::Event &event) {
-    Drawing_game game;
+void MenuBoard::Events(const sf::Event &event) {
+    DrawingGame game;
 
     if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::Up) {
         moveUP();
@@ -64,17 +64,17 @@ void Menu_Board::Events(const sf::Event &event) {
     }
 }
 
-void Menu_Board::DrawingMenu(sf::RenderWindow &win) {
+void MenuBoard::DrawingMenu(sf::RenderWindow &win) {
     for (const auto &i : space.Menu) { win.draw(i); }
     win.draw(shape);
     win.draw(logo);
 }
 
-int Menu_Board::getPage() {
+int MenuBoard::getPage() {
     return Page;
 }
 
-void Menu_Board::setPage3() {
+void MenuBoard::setPage3() {
     Page = 3;
 }
 

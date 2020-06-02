@@ -1,12 +1,12 @@
-#include <iostream>
+
 #include <cstdlib>
 #include <ctime>
-#include "Drawing_game.h"
+#include "DrawingGame.h"
 
 
 int main() {
     srand(time(nullptr));
-    Drawing_game game;
+    DrawingGame game;
     game.drawing();
     return 0;
 }

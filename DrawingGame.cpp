@@ -2,26 +2,27 @@
 // Created by Gus on 07.05.2020.
 //
 
-#include <iostream>
-#include "Drawing_game.h"
+
+#include "DrawingGame.h"
 
 
-Drawing_game::Drawing_game() {
+DrawingGame::DrawingGame() {
 }
 
-void Drawing_game::drawing() {
+void DrawingGame::drawing() {
     sf::RenderWindow win(sf::VideoMode(space.get_width(), space.get_height()), "Jupiter",
                          sf::Style::Titlebar | sf::Style::Close);
     win.setActive(true);
     win.setKeyRepeatEnabled(false);
     win.setVerticalSyncEnabled(true);
+    win.setFramerateLimit(60);
     sf::Event event{};
 
 
-    spaceship player(&space.shipTex);
-    Menu_Board menu;
-    Game_Board play;
-    Results_board result;
+    Spaceship player(&space.shipTex);
+    MenuBoard menu;
+    GameBoard play;
+    ResultsBoard result;
 
 
     while (win.isOpen()) {
@@ -36,7 +37,7 @@ void Drawing_game::drawing() {
 
             if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::R) {
                 play.RestartGame(player);
-                Done = false;
+                IsAlreadySaved = false;
             }
 
             if (event.type == sf::Event::KeyReleased && event.key.code == sf::Keyboard::M) {
@@ -60,9 +61,9 @@ void Drawing_game::drawing() {
                 play.clk3.restart();
             }
 
-        } else if (player.isGameOver() && !Done) {
+        } else if (player.isGameOver() && !IsAlreadySaved) {
             player.Safe_Score();
-            Done = true;
+            IsAlreadySaved = true;
         }
 
 

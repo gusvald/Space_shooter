@@ -2,16 +2,16 @@
 // Created by Gus on 05.05.2020.
 //
 
-#ifndef SPACESHOOTER_MENU_BOARD_H
-#define SPACESHOOTER_MENU_BOARD_H
+#ifndef SPACESHOOTER_MENUBOARD_H
+#define SPACESHOOTER_MENUBOARD_H
 
 #include "SFML/Graphics.hpp"
-#include "textures_in.h"
-#include "Drawing_game.h"
-#include "Results_board.h"
+#include "TexturesIn.h"
+#include "DrawingGame.h"
+#include "ResultsBoard.h"
 
 
-class Menu_Board {
+class MenuBoard {
     int Selected;
     int Page = 3;
 public:
@@ -19,9 +19,9 @@ public:
     sf::Sprite shape;
     sf::Sprite logo;
 
-    Menu_Board();
+    MenuBoard();
 
-    textures_in space;
+    TexturesIn space;
 
     void moveUP();
 
@@ -39,4 +39,4 @@ public:
 };
 
 
-#endif //SPACESHOOTER_MENU_BOARD_H
+#endif //SPACESHOOTER_MENUBOARD_H

@@ -1,22 +1,22 @@
 //
 // Created by Gus on 05.05.2020.
 //
-#include "Results_board.h"
-#include <iostream>
+#include "ResultsBoard.h"
 
-Results_board::Results_board() {
+
+ResultsBoard::ResultsBoard() {
     LoadResults();
 }
 
-void Results_board::DrawResults(sf::RenderWindow &win) {
+void ResultsBoard::DrawResults(sf::RenderWindow &win) {
     for (int i = 0; i < 10; i++) {
         win.draw(Results[i]);
     }
     win.draw(space.BackMenuInfo);
 }
 
-void Results_board::LoadResults() {
-    spaceship player(&space.shipTex);
+void ResultsBoard::LoadResults() {
+    Spaceship player(&space.shipTex);
 
     player.file.open("../Notes/Score.txt", std::ios::in);
     if (player.file.good()) {

@@ -8,9 +8,9 @@
 #include<SFML/Graphics.hpp>
 
 
-class laser {
+class Laser {
 public:
-    laser(sf::Texture *texture, float pos);
+    Laser(sf::Texture *texture, float pos);
 
     sf::Sprite shape;
 };

@@ -7,7 +7,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class enemy {
+class Enemy {
 public:
     int HP;
     int HP_max;
@@ -15,7 +15,7 @@ public:
     sf::Sprite shape;
     sf::Texture *texture;
 
-    enemy(sf::Texture *texture, sf::Vector2<unsigned int> pos, bool special);
+    Enemy(sf::Texture *texture, sf::Vector2<unsigned int> pos, bool special);
 
 
 };

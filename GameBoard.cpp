@@ -2,14 +2,14 @@
 // Created by Gus on 05.05.2020.
 //
 
-#include <iostream>
-#include "Game_Board.h"
 
-Game_Board::Game_Board() {
-    spaceship player(&space.shipTex);
+#include "GameBoard.h"
+
+GameBoard::GameBoard() {
+    Spaceship player(&space.shipTex);
 }
 
-void Game_Board::Events(spaceship &player, const sf::Event &event) {
+void GameBoard::Events(Spaceship &player, const sf::Event &event) {
 
     if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
         if (clk1.getElapsedTime().asMilliseconds() > 20) {
@@ -42,7 +42,7 @@ void Game_Board::Events(spaceship &player, const sf::Event &event) {
     }
 }
 
-void Game_Board::Logic(sf::RenderWindow &win, spaceship &player) {
+void GameBoard::Logic(sf::RenderWindow &win, Spaceship &player) {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
         player.shape.move(-10.f, 0.f);
 
@@ -135,7 +135,7 @@ void Game_Board::Logic(sf::RenderWindow &win, spaceship &player) {
     }
 }
 
-void Game_Board::DrawingGame(sf::RenderWindow &win, spaceship &player) {
+void GameBoard::DrawingGame(sf::RenderWindow &win, Spaceship &player) {
     win.draw(player.shape);
 
     for (unsigned int i = 0; i < player.lasers.size(); i++) {
@@ -159,7 +159,7 @@ void Game_Board::DrawingGame(sf::RenderWindow &win, spaceship &player) {
     }
 }
 
-void Game_Board::RestartGame(spaceship &player) {
+void GameBoard::RestartGame(Spaceship &player) {
     laser_level = 0;
     space.objects.clear();
     player.resetHP();

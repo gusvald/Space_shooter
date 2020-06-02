@@ -2,10 +2,10 @@
 // Created by Gus on 05.05.2020.
 //
 
-#include "spaceship.h"
+#include "Spaceship.h"
 
 
-spaceship::spaceship(sf::Texture *texture) {
+Spaceship::Spaceship(sf::Texture *texture) {
     this->HP_max = 20;
     this->HP = HP_max;
     this->score = 0;
@@ -15,38 +15,38 @@ spaceship::spaceship(sf::Texture *texture) {
     this->shape.setPosition(440, 650);
 }
 
-void spaceship::decrease_HP() {
+void Spaceship::decrease_HP() {
     this->HP--;
     if (this->HP == 0)
         GameOver = true;
 
 }
 
-bool spaceship::isGameOver() {
+bool Spaceship::isGameOver() {
     return this->GameOver;
 }
 
-void spaceship::add_score() {
+void Spaceship::add_score() {
     this->score = this->score + 100;
 }
 
-void spaceship::add_score1() {
+void Spaceship::add_score1() {
     this->score = this->score + 10;
 }
 
-void spaceship::add_score2() {
+void Spaceship::add_score2() {
     this->score = this->score + 500;
 }
 
-int spaceship::get_Score() {
+int Spaceship::get_Score() {
     return this->score;
 }
 
-int spaceship::get_HP() {
+int Spaceship::get_HP() {
     return this->HP;
 }
 
-void spaceship::Safe_Score() {
+void Spaceship::Safe_Score() {
     ScoreBoard[10] = get_Score();
 
     file.open("../Notes/Score.txt", std::ios::in);
@@ -72,19 +72,19 @@ void spaceship::Safe_Score() {
     file.close();
 }
 
-void spaceship::resetHP() {
+void Spaceship::resetHP() {
     this->HP = this->HP_max;
 }
 
-void spaceship::resetSCORE() {
+void Spaceship::resetSCORE() {
     this->score = 0;
 }
 
-void spaceship::resetGameOver() {
+void Spaceship::resetGameOver() {
     GameOver = false;
 }
 
-void spaceship::resetLasers() {
+void Spaceship::resetLasers() {
     lasers.clear();
 }
 

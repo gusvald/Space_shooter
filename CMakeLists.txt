@@ -25,6 +25,6 @@ endif (WIN32)
 
 find_package(SFML 2 COMPONENTS graphics audio REQUIRED)
 
-add_executable(MyApp main.cpp spaceship.cpp spaceship.h enemy.cpp enemy.h laser.cpp laser.h Menu_Board.cpp Menu_Board.h Results_board.cpp Results_board.h Game_Board.cpp Game_Board.h textures_in.cpp textures_in.h Drawing_game.cpp Drawing_game.h)
+add_executable(MyApp main.cpp Spaceship.cpp Spaceship.h Enemy.cpp Enemy.h Laser.cpp Laser.h MenuBoard.cpp MenuBoard.h ResultsBoard.cpp ResultsBoard.h GameBoard.cpp GameBoard.h TexturesIn.cpp TexturesIn.h DrawingGame.cpp DrawingGame.h)
 
 target_link_libraries(MyApp sfml-graphics sfml-audio)

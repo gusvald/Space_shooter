@@ -2,9 +2,9 @@
 // Created by Gus on 05.05.2020.
 //
 
-#include "enemy.h"
+#include "Enemy.h"
 
-enemy::enemy(sf::Texture *texture, sf::Vector2<unsigned int> pos, bool special) {
+Enemy::Enemy(sf::Texture *texture, sf::Vector2<unsigned int> pos, bool special) {
     this->special = special;
     this->HP_max = rand() % 4 + 1;
     this->HP = HP_max;

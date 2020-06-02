@@ -2,14 +2,14 @@
 // Created by Gus on 05.05.2020.
 //
 
-#ifndef SPACESHOOTER_TEXTURES_IN_H
-#define SPACESHOOTER_TEXTURES_IN_H
+#ifndef SPACESHOOTER_TEXTURESIN_H
+#define SPACESHOOTER_TEXTURESIN_H
 
 #include <SFML/Graphics.hpp>
-#include "enemy.h"
+#include "Enemy.h"
 
 
-class textures_in {
+class TexturesIn {
     int width = 1024;
     int height = 768;
 public:
@@ -17,7 +17,7 @@ public:
 
     int get_height() const;
 
-    textures_in();
+    TexturesIn();
 
     sf::Font font;
 
@@ -40,8 +40,8 @@ public:
     sf::Text Menu[3];
 
 
-    std::vector<enemy> objects;
+    std::vector<Enemy> objects;
 };
 
 
-#endif //SPACESHOOTER_TEXTURES_IN_H
+#endif //SPACESHOOTER_TEXTURESIN_H

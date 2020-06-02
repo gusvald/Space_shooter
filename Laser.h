@@ -11,7 +11,6 @@
 class Laser {
 public:
     Laser(sf::Texture *texture, float pos);
-
     sf::Sprite shape;
 };
 

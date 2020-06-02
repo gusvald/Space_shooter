@@ -8,15 +8,22 @@
 #include <SFML/Graphics.hpp>
 
 class Enemy {
-public:
     int HP;
     int HP_max;
     bool special = false;
-    sf::Sprite shape;
     sf::Texture *texture;
+public:
+    sf::Sprite shape;
+
     Enemy(sf::Texture *texture, sf::Vector2<unsigned int> pos, bool special);
 
+    int getHP();
 
+    void decreaseHP();
+
+    void setlowestHP();
+
+    bool getSpecial();
 };
 
 

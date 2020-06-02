@@ -4,9 +4,10 @@
 
 #include "Spaceship.h"
 
+#define maxShipValue 20
 
 Spaceship::Spaceship(sf::Texture *texture) {
-    this->HP_max = 20;
+    this->HP_max = maxShipValue;
     this->HP = HP_max;
     this->score = 0;
     this->GameOver = false;

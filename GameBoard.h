@@ -13,9 +13,9 @@
 
 class GameBoard {
     TexturesIn space;
+    int laser_level = 0;
 public:
     sf::Clock clk, clk1, clk2, clk3;
-    int laser_level = 0;
 
     GameBoard();
 

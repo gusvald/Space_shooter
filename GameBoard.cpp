@@ -68,12 +68,12 @@ void GameBoard::Logic(sf::RenderWindow &win, Spaceship &player) {
                 explode.setScale(0.2f, 0.2f);
                 explosions.push_back(explode);
 
-                if (laser_level >= 3) { space.objects[i].HP = 0; }
+                if (laser_level >= 3) { space.objects[i].setlowestHP(); }
                 else {
-                    space.objects[i].HP--;
+                    space.objects[i].decreaseHP();
                 }
 
-                if (space.objects[i].HP <= 0) {
+                if (space.objects[i].getHP() <= 0) {
                     space.objects.erase(space.objects.begin() + g);
                     player.add_score();
                 }
@@ -112,7 +112,7 @@ void GameBoard::Logic(sf::RenderWindow &win, Spaceship &player) {
 
     for (unsigned int i = 0; i < space.objects.size(); i++) {
 
-        if (space.objects[i].special) { space.objects[i].shape.move(0.f, 12.f); }
+        if (space.objects[i].getSpecial()) { space.objects[i].shape.move(0.f, 12.f); }
         else
             space.objects[i].shape.move(0.f, 9.f);
 
@@ -125,7 +125,7 @@ void GameBoard::Logic(sf::RenderWindow &win, Spaceship &player) {
 
 
         if (space.objects[i].shape.getGlobalBounds().intersects(player.shape.getGlobalBounds())) {
-            if (space.objects[i].special) {
+            if (space.objects[i].getSpecial()) {
                 laser_level++;
                 player.add_score2();
             } else { player.decrease_HP(); }
@@ -169,6 +169,7 @@ void GameBoard::RestartGame(Spaceship &player) {
     clk1.restart();
     clk2.restart();
 }
+
 
 
 
